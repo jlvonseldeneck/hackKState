@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameManagerScript : MonoBehaviour
 {
     public void gameOver(int enemy) {
-        Debug.Log("Game Over");
+        SceneManager.LoadScene(2);
     }
 }

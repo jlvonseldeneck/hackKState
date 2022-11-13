@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class movement : MonoBehaviour
 {
-    [SerializeField] public static int score = 0;
 
     [SerializeField] public float speed;
 
@@ -26,6 +25,8 @@ public class movement : MonoBehaviour
 
     public Slider slider;
 
+    public int score = 0;
+
     public int realFrame() {
         return frameCount;
     }
@@ -37,6 +38,17 @@ public class movement : MonoBehaviour
     public Vector3 lastRC()
     {
         return lastRightClick;
+    }
+
+    public void addScore(int add) {
+        score += add;
+
+    }
+
+
+    public int getScore()
+    {
+        return score;
     }
 
     void Update()

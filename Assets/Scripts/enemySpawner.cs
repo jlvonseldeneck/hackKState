@@ -58,17 +58,17 @@ public class enemySpawner : MonoBehaviour
                 pos = new Vector3((float)Random.Range(-870, 870) / 100f, -5.6f, 0f);
             }
             int rand = Random.Range(1, 11);
-            if (rand > 8)
+            if (rand > 9)
             {
 
-                GameObject e3 = Instantiate(E3Pref,pos, Quaternion.Euler(0f, 0f, 0f));
-                Rigidbody2D rb = e3.GetComponent<Rigidbody2D>();
+                GameObject e2 = Instantiate(E2Pref,pos, Quaternion.Euler(0f, 0f, 0f));
+                Rigidbody2D rb = e2.GetComponent<Rigidbody2D>();
 
             }
-            else if (rand > 5)
+            else if (rand > 6)
             {
-                GameObject e2 = Instantiate(E2Pref, pos, Quaternion.Euler(0f, 0f, 0f));
-                Rigidbody2D rb = e2.GetComponent<Rigidbody2D>();
+                GameObject e3 = Instantiate(E3Pref, pos, Quaternion.Euler(0f, 0f, 0f));
+                Rigidbody2D rb = e3.GetComponent<Rigidbody2D>();
             }
             else {
                 GameObject e1 = Instantiate(E1Pref, pos, Quaternion.Euler(0f, 0f, 0f));

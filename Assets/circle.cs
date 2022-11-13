@@ -6,6 +6,7 @@ public class circle : MonoBehaviour
 {
     private int frameCount = 0;
     [SerializeField] public int bgSpeed;
+    [SerializeField] public int tnSpeed;
     public float angularSpeed = 1f;
     public float circleRad = 1f;
 

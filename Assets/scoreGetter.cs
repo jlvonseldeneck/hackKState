@@ -1,15 +1,14 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ammoTextChange : MonoBehaviour
+public class scoreGetter : MonoBehaviour
 {
-    public Text ammo;
     public Text score;
 
-    void Update()
+    void Awake()
     {
-        ammo.text = FindObjectOfType<shooting>().getAmmo().ToString();
         score.text = scoring.score.ToString();
     }
 }

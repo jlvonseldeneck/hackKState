@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Enemy1Controller : MonoBehaviour
 {
-    [SerializeField] public float speed;
+    [SerializeField] public float iSpeed;
     Vector3 pos;
     [SerializeField] public float speedIncreaseCoef;
-    float iSpeed;
-
-    void Awake() {
-        iSpeed = speed;
-    }
+    float speed;
 
     void Update()
     {
