@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class movement : MonoBehaviour
 {
@@ -8,8 +9,11 @@ public class movement : MonoBehaviour
 
     [SerializeField] public float speed;
 
-    public GameObject rightSprite;
+    [SerializeField] public float multi;
 
+    private float aSpeed;
+
+    public GameObject rightSprite;
     Vector3 lastRightClick = new Vector3(0f, 0f, 0f);
     Vector3 currentMousePosition;
     public Animator anim;
@@ -19,6 +23,8 @@ public class movement : MonoBehaviour
     int killEnemy;
 
     int frameCount = 0;
+
+    public Slider slider;
 
     public int realFrame() {
         return frameCount;
@@ -32,6 +38,7 @@ public class movement : MonoBehaviour
     {
         return lastRightClick;
     }
+
     void Update()
     {
         if (boom) {
@@ -45,6 +52,10 @@ public class movement : MonoBehaviour
         else
         { 
             frameCount++;
+            slider.value = frameCount % 1000f;
+            if (frameCount % 1000f == 0) {
+                FindObjectOfType<shooting>().addAmmo();
+            }
             if (Input.GetMouseButtonDown(1))
             {
                 lastRightClick = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -58,8 +69,16 @@ public class movement : MonoBehaviour
             float yDiff = lastRightClick.y - transform.position.y;
             if (Mathf.Abs(xDiff) > 0 || Mathf.Abs(yDiff) > 0)
             {
+                int ammo = FindObjectOfType<shooting>().getAmmo();
+                if (ammo < 5)
+                {
+                    aSpeed = speed + (5 - ammo)/multi;
+                }
+                else {
+                    aSpeed = speed;
+                }
                 float hypot = Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2));
-                if (hypot <= speed)
+                if (hypot <= aSpeed)
                 {
                     anim.SetBool("walking", false);
                     transform.position = lastRightClick;
@@ -69,7 +88,7 @@ public class movement : MonoBehaviour
                     anim.SetBool("walking", true);
                     Vector3 lookDirection2 = lastRightClick - transform.position;
                     float angle2 = Mathf.Atan2(lookDirection2.y, lookDirection2.x);
-                    transform.position = new Vector3(transform.position.x + Mathf.Cos(angle2) * speed, transform.position.y + Mathf.Sin(angle2) * speed, 0f);
+                    transform.position = new Vector3(transform.position.x + Mathf.Cos(angle2) * aSpeed, transform.position.y + Mathf.Sin(angle2) * aSpeed, 0f);
                 }
             }
             Vector3 lookDirection = currentMousePosition - transform.position;

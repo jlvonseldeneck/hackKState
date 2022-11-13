@@ -16,16 +16,18 @@ public class collisionDetection : MonoBehaviour
         {
             FindObjectOfType<AudioHandler>().playExplosion();
             FindObjectOfType<AudioHandler>().pitchUpExp();
+            FindObjectOfType<shooting>().addAmmo();
             if (col.gameObject.name == "E1")
             {
-                //score += 10;
+                //
             }
             else if (col.gameObject.name == "E2")
             {
+                //
             }
             else if (col.gameObject.name == "E3")
             {
-                //score += 30;
+                //
             }
             Destroy(gameObject);
             Destroy(col.gameObject);

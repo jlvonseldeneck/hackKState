@@ -28,7 +28,6 @@ public class Enemy2Controller : MonoBehaviour
         {
             pos = new Vector3((float)Random.Range(-800, 800) / 100f, (float)Random.Range(-500, 500) / 100f, 0f);
         }
-        Debug.Log(pos);
         Vector3 lookDirection = pos - transform.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x);
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, angle * Mathf.Rad2Deg - 90f);
